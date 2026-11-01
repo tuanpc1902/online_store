@@ -1,0 +1,19 @@
+﻿{
+    "name":  "online-store",
+    "private":  true,
+    "workspaces":  [
+                       "apps/storefront",
+                       "apps/admin"
+                   ],
+    "scripts":  {
+                    "dev:storefront":  "npm run dev --workspace @online-store/storefront",
+                    "dev:admin":  "npm run dev --workspace @online-store/admin",
+                    "build:storefront":  "npm run build --workspace @online-store/storefront",
+                    "build:admin":  "npm run build --workspace @online-store/admin",
+                    "typecheck:storefront":  "npm run typecheck --workspace @online-store/storefront",
+                    "typecheck:admin":  "npm run typecheck --workspace @online-store/admin"
+                },
+    "devDependencies":  {
+                            "@types/node":  "^24.0.0"
+                        }
+}
