@@ -177,12 +177,12 @@ INSERT INTO purchase_orders(purchase_order_id,po_number,supplier_id,warehouse_id
 INSERT INTO purchase_order_items(purchase_order_item_id,purchase_order_id,variant_id,quantity_ordered,quantity_received,unit_cost) VALUES
 (1,1,1,30,20,48),(2,1,3,24,24,71),(3,2,5,20,0,52),(4,2,7,40,0,21);
 INSERT INTO stock_movements(warehouse_id,variant_id,movement_type,quantity_delta,reserved_delta,reference_type,reference_id,performed_by,note,occurred_at) VALUES
-(1,1,'receipt',20,'purchase_order',1,3,'Partial receipt from PO-2025-0001','2025-04-12'),
+(1,1,'receipt',20,0,'purchase_order',1,3,'Partial receipt from PO-2025-0001','2025-04-12'),
 (1,1,'reservation',0,-1,'order',1,NULL,'Reserved for ORD-2025-00001','2025-04-02'),
-(1,1,'shipment',-1,'shipment',1,3,'Shipped ORD-2025-00001','2025-04-02'),
+(1,1,'shipment',-1,-1,'shipment',1,3,'Shipped ORD-2025-00001','2025-04-02'),
 (1,7,'reservation',0,-1,'order',1,NULL,'Reserved for ORD-2025-00001','2025-04-02'),
-(1,7,'shipment',-1,'shipment',1,3,'Shipped ORD-2025-00001','2025-04-02'),
-(2,1,'return',1,'return',1,3,'Damaged return held for inspection','2025-04-18');
+(1,7,'shipment',-1,-1,'shipment',1,3,'Shipped ORD-2025-00001','2025-04-02'),
+(2,1,'return',1,0,'return',1,3,'Damaged return held for inspection','2025-04-18');
 INSERT INTO wishlists(wishlist_id,customer_id,name,is_default) VALUES(1,1,'Gift ideas',TRUE),(2,2,'Workspace upgrades',TRUE);
 INSERT INTO wishlist_items(wishlist_id,variant_id) VALUES(1,4),(1,9),(2,5),(2,11);
 INSERT INTO inventory_reservations(order_item_id,warehouse_id,variant_id,quantity,reservation_status,expires_at,created_at) VALUES
