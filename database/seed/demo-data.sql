@@ -1,4 +1,4 @@
-﻿-- Import ecommerce_platform.sql first, then this file. Synthetic data only.
+﻿-- Run after Flyway V1 creates the schema. Synthetic data only; run once.
 USE ecommerce_platform;
 
 INSERT INTO roles(role_id,code,name,description) VALUES
@@ -109,7 +109,7 @@ INSERT INTO orders(order_id,order_number,customer_id,source,order_status,payment
 (1,'ORD-2025-00001',1,'web','completed','paid','fulfilled','USD','linh.nguyen@example.com','Linh Nguyen','+84-90-100-2001',135,13.50,5,9.72,136.22,'2025-04-02 10:15:00','Please leave with reception.'),
 (2,'ORD-2025-00002',2,'web','shipped','paid','fulfilled','USD','minh.tran@example.com','Minh Tran','+84-91-200-3002',145,5,0,11.20,151.20,'2025-04-04 14:40:00',NULL),
 (3,'ORD-2025-00003',3,'web','partially_returned','partially_refunded','fulfilled','USD','jordan.lee@example.com','Jordan Lee','+1-415-555-0144',428,42.80,12,30.82,428.02,'2025-04-08 09:05:00','Gift order.'),
-(4,'ORD-2025-00004',4,'admin','processing','authorized','unfulfilled','USD','mai.vo@example.com','Mai Vo','+84-98-500-6005',135,0,4,10.80,149.80,'2025-04-12 18:25:00',NULL),
+(4,'ORD-2025-00004',4,'admin','processing','authorized','unfulfilled','USD','mai.vo@example.com','Mai Vo','+84-98-500-6005',158,0,4,12.64,174.64,'2025-04-12 18:25:00',NULL),
 (5,'ORD-2025-00005',5,'web','completed','paid','fulfilled','USD','alex.chen@example.com','Alex Chen','+65-8123-4568',116,11.60,10,8.35,122.75,'2025-04-15 12:02:00',NULL),
 (6,'ORD-2025-00006',1,'web','cancelled','refunded','unfulfilled','USD','linh.nguyen@example.com','Linh Nguyen','+84-90-100-2001',99,0,0,7.92,106.92,'2025-04-19 16:50:00','Wrong keyboard layout selected.');
 INSERT INTO order_addresses(order_id,address_type,recipient_name,phone,line1,line2,ward,district,city,region,postal_code,country_code) VALUES
@@ -136,7 +136,7 @@ INSERT INTO order_items(order_item_id,order_id,variant_id,sku_snapshot,product_n
 (8,3,11,'AUD-MIC-USB-BLK','USB Condenser Microphone','Black',1,119,65,11.90,8.57,115.67),
 (9,3,2,'AUD-HDP-100-WHT','Studio Headphones','White',1,75,48,7.50,5.40,72.90),
 (10,4,3,'AUD-EAR-220-BLK','Wireless Earbuds','Black',1,129,71,0,10.32,139.32),
-(11,4,8,'KIT-BTL-750-SLV','Insulated Water Bottle','Silver',1,6,11,0,.48,6.48),
+(11,4,8,'KIT-BTL-750-SLV','Insulated Water Bottle','Silver',1,29,11,0,2.32,31.32),
 (12,5,9,'OUT-BAG-028-OLV','Daypack 28L','Olive',1,79,41,7.90,5.69,76.79),
 (13,5,10,'HOM-DESK-01-BLK','LED Desk Lamp','Black',1,37,19,3.70,2.66,35.96),
 (14,6,5,'CMP-KBD-104-US','Mechanical Keyboard','US Layout',1,99,52,0,7.92,106.92);
@@ -146,7 +146,7 @@ INSERT INTO payments(payment_id,order_id,payment_method,provider,payment_status,
 (1,1,'card','Stripe','captured',136.22,'USD','pi_demo_10001','2025-04-02 10:16:13','2025-04-02 10:15:30'),
 (2,2,'bank_transfer','Manual','captured',151.20,'USD','bank_demo_20002','2025-04-04 15:02:00','2025-04-04 14:41:00'),
 (3,3,'card','Stripe','partially_refunded',428.02,'USD','pi_demo_10003','2025-04-08 09:06:00','2025-04-08 09:05:40'),
-(4,4,'cash_on_delivery','Manual','authorized',149.80,'USD',NULL,NULL,'2025-04-12 18:25:10'),
+(4,4,'cash_on_delivery','Manual','authorized',174.64,'USD',NULL,NULL,'2025-04-12 18:25:10'),
 (5,5,'card','Stripe','captured',122.75,'USD','pi_demo_10005','2025-04-15 12:03:12','2025-04-15 12:02:30'),
 (6,6,'card','Stripe','refunded',106.92,'USD','pi_demo_10006','2025-04-19 16:51:00','2025-04-19 16:50:30');
 INSERT INTO payment_transactions(payment_id,transaction_type,amount,provider_transaction_id,transaction_status,idempotency_key,response_code,created_at) VALUES
@@ -202,4 +202,3 @@ INSERT INTO audit_logs(actor_user_id,action,entity_type,entity_id,before_data,af
 (1,'product.price.updated','product_variant','1','{"price":85}','{"price":89}','192.0.2.10','2025-04-01 09:00:00'),
 (2,'return.approved','customer_return','2',NULL,'{"status":"approved","resolution":"replacement"}','192.0.2.11','2025-04-19 10:30:00'),
 (3,'purchase_order.received','purchase_order','1','{"status":"submitted"}','{"status":"partially_received"}','192.0.2.12','2025-04-12 15:00:00');
-
